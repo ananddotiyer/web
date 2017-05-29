@@ -1,0 +1,25 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="row">
+                <d class="col-sm-10">
+                    <a class="navbar-brand" href="{{ url_for('tests') }}">Tests</a>
+                    <a class="navbar-brand" href="{{ url_for('test_upload') }}">Upload</a>
+                    <a class="navbar-brand" href="{{ url_for('results') }}">Results</a>
+                    <a class="navbar-brand" href="{{ url_for('schema') }}">Schema</a>
+                    <a class="navbar-brand" href="{{ url_for('cleanup') }}">Cleanup</a>
+                    <a class="navbar-brand" href="{{ url_for('logout') }}">Logout</a>
+                </d>
+                <d class="col-sm-2"><h4><font color="silver">Welcome, {{ username }}.</font></h4></d>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% block page_content %}{% endblock %}
+    </div>
+{% endblock %}

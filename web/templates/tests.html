@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block title %}Tests{{ server }}{% endblock %}
+
+{% block page_content %}
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
+    </script>
+
+    <table class="table table-hover">
+        <tr>
+            <th>Select</th>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>URL</th>
+        </tr>
+        <form action="" method="post" name="run">
+            {% for test in tests %}
+                {{ macros.test_row(test["api_category"],
+                                        test["api_download"],
+                                        test["api_name"],
+                                        test["api_type"],
+                                        test["api_url"]) }}
+            {% endfor %}
+
+            <div class="row">
+                <d class="col-sm-1"><button type="submit" class="btn btn-success btn-md" onclick="">Run</button></d>
+            </div>
+            </br>
+        </form>
+    </table>
+{% endblock %}

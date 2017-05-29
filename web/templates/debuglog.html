@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block title %}Debuglog{% endblock %}
+
+{% block page_content %}
+    <div class="container">
+        </tr>
+        {% for line in lines %}
+            {% if line == '' %}</br>{% endif %}
+            <p>{{ line }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

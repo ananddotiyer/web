@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block title %}Results{% endblock %}
+
+{% block page_content %}
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
+    </script>
+
+
+    <h3>Results</h3>
+    <table class="table table-hover">   
+        <tr class="table-row">
+            <th>API</th>
+            <th>Type</th>
+            <th>Executed at</th>
+            <th>Time spent</th>
+            <th>Result</th>
+            <th>Schema</th>
+        </tr>
+        {% for result in results %}
+            {{ macros.result_row(result["test_path"],
+                                result["api_url"],
+                                result["api_type"],
+                                result["executed_at"],
+                                result["time_spent (sec)"],
+                                result["result"],
+                                result["debuglog"],
+                                result["schema"]) }}
+        {% endfor %}
+    </table>
+{% endblock %}

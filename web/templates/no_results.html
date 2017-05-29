@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block title %}No Results{% endblock %}
+
+{% block page_content %}
+    <h3>
+        {% if running %}Tests are running...{% endif %}
+        <p>No results yet!  Refresh the page after a while.</p>
+    </h3>
+    
+{% endblock %}

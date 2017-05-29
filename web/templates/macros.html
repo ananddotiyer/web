@@ -1,0 +1,41 @@
+{% macro display_link (api_url, is_get) %}
+    <td>
+        {% if is_get %} <a href='{{ api_url }}'>{% endif %}
+            {{ api_url }}
+        {% if is_get %} </a> {% endif %}
+    </td>
+{% endmacro %}
+
+{% macro test_row(api_category, api_download, api_name, api_type, api_url) %}
+    <tr>
+        <td><input type="checkbox" name="select" value="{{api_category}},{{ api_name }}"></td>
+        <td><a href='{{ api_download }}' data-toggle="tooltip" title="download test file (.py)">{{ api_category }}</a></td>
+        <td><a href='/edittest?cat={{api_category}}&name={{api_name}}' data-toggle="tooltip" title="edit test">{{ api_name }}</a></td>
+        <td>{{ api_type }}</td>
+        <td>{{ api_url }}</td>
+        <td><button type="button" class="btn btn-primary btn-sm btn-block" onclick="window.open('/duplicate?cat={{api_category}}&name={{api_name}}', '_self')">Copy</button></td>
+        <td><button type="button" class="btn btn-danger btn-sm btn-block" onclick="window.open('/delete?cat={{api_category}}&name={{api_name}}', '_self')">Delete</button></td>
+    </tr>
+{% endmacro %}
+
+{% macro schema_row(tab, line) %}
+    {% set class = tab %}
+    {% if "fail" in line %}{% set class = class ~ " fail" %}{% endif %}
+    <p>
+        <span class="{{class}}">{{line}}</span>
+    </p>
+{% endmacro %}
+
+{% macro result_row(test_path, api_url, api_type, executed_at, time_spent, result, debuglog, schema) %}
+    <tr>
+        {# {{ display_link (api_url, api_type == "GET") }} #}
+        
+        <td><a href='{{ test_path }}' data-toggle="tooltip" title="download exported response (.csv)">{{ api_url }}</a></td>
+        <td>{{ api_type }}</td>
+        <td>{{ executed_at }}</td>
+        <td>{{ time_spent }}</td>
+        <td><a href='{{ debuglog }}' data-toggle="tooltip" title="see log">{{ result }}</a></td>
+        
+        <td><a href='{{ schema }}' data-toggle="tooltip" title="see report">Comparison Report</a></td>
+    </tr>
+{% endmacro %}
