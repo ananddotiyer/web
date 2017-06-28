@@ -33,7 +33,7 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 sys.path.append(path.dirname(path.dirname(path.dirname(path.abspath(__file__)))))
 
 from main import main_config, main_driver
-from tests.tests_suite import *
+from ..tests.tests_suite import *
 
 @app.route('/')
 def index():
